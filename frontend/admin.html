@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel - Manage Services</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    if (!localStorage.getItem("isAdmin")) {
+      alert("Admin access only");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Admin Panel: Manage Services</h1>
+
+    <!-- Add New Service -->
+    <div class="card">
+      <h2>Add New Service</h2>
+      <form id="serviceForm">
+        <label for="serviceName">Service Name</label>
+        <input type="text" id="serviceName" required>
+
+        <label for="serviceDescription">Description</label>
+        <textarea id="serviceDescription" rows="3"></textarea>
+
+        <label for="servicePrice">Price (€)</label>
+        <input type="number" id="servicePrice" step="0.01">
+
+        <button type="submit" class="btn">Add Service</button>
+      </form>
+    </div>
+
+    <!-- Existing Services -->
+    <h2 style="margin-top:40px;">Existing Services</h2>
+    <div id="serviceList" class="grid"></div>
+  </div>
+
+  <script src="js/admin.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/footer.js"></script>
+</body>
+</html>

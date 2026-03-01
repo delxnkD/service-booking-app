@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Manage Users</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    if (!localStorage.getItem("isAdmin")) {
+      alert("Admin access only");
+      window.location.href = "login.html";
+    }
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h1>Manage Users</h1>
+  <div id="usersList" class="grid"></div>
+</div>
+
+<script src="js/navbar.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/admin-users.js"></script>
+
+</body>
+</html>

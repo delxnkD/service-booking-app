@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - Service Booking</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div style="text-align:center; padding:50px;">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required><br><br>
+
+      <button type="submit" class="btn">Login</button>
+          <p style="margin-top:20px; font-size:14px;">
+  Don't have an account? <a href="register.html" style="color:#10b981; text-decoration:underline; font-weight:500;">Register Here</a>
+</p>
+
+    <div id="loginMessage" style="margin-top:15px; color:red; font-weight:500;"></div>
+    </form>
+    <div id="loginMessage"></div>
+  </div>
+
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Profile</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="container">
+  <h1>My Profile</h1>
+
+  <form id="profileForm">
+    <label>Username</label>
+    <input type="text" id="username" required>
+
+    <label>Email</label>
+    <input type="email" id="email" required>
+
+    <label>New Password (leave blank to keep current)</label>
+    <input type="password" id="password">
+    <br><br>
+
+    <button type="submit" class="btn">Save Changes</button>
+
+    <div id="profileMessage" style="margin-top:15px;"></div>
+  </form>
+</div>
+
+<script src="js/navbar.js"></script>
+<script src="js/footer.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/profile.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    if (typeof requireLogin === "function") {
+      requireLogin();
+    }
+  });
+</script>
+
+</body>
+</html>

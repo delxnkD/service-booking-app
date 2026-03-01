@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Bookings</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<script>
+  // Redirect admin users to admin dashboard
+  if (localStorage.getItem("isAdmin") === "true") {
+    window.location.href = "dashboard.html";
+  }
+</script>
+<body>
+
+  <div class="container">
+    <h1>My Bookings</h1>
+
+    <!-- Filter section -->
+    <div style="display:flex; flex-wrap:wrap; gap:15px; margin-bottom:20px;">
+      <div>
+        <label for="filterService">Filter by Service:</label>
+        <select id="filterService">
+          <option value="">All</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="filterStatus">Filter by Status:</label>
+        <select id="filterStatus">
+          <option value="">All</option>
+          <option value="Pending">Pending</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+
+      <div style="align-self:flex-end;">
+        <button id="filterBtn" class="btn">Filter</button>
+      </div>
+    </div>
+
+    <div id="bookings" class="grid"></div>
+  </div>
+
+  <script src="js/navbar.js"></script>
+  <script src="js/footer.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/userBookings.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    if (typeof requireLogin === 'function') {
+      requireLogin();
+    }
+  });
+</script>
+</body>
+</html>
