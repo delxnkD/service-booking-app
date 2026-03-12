@@ -19,12 +19,12 @@ app.use("/api/users", require("./routes/userRoutes"));
 const frontendPath = path.join(__dirname, "../frontend");
 app.use(express.static(frontendPath));
 
-// Catch-all route for SPA (React, Vue, or plain HTML routing)
-app.get("*", (req, res) => {
+// Catch-all route for SPA
+app.get("/*", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
-// Use Render's PORT environment variable, fallback to 5000 locally
+// Use Render's PORT environment variable, fallback to 5000
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () =>
   console.log(`Server running on port ${PORT}`)
