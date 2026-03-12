@@ -1,9 +1,9 @@
-fetch("http://localhost:5000/api/services")
+fetch("/api/services")
   .then(res => res.json())
   .then(services => {
+
     const container = document.getElementById("featuredServices");
 
-    // Sort services by price (highest first)
     const topServices = services
       .sort((a, b) => b.price - a.price)
       .slice(0, 3);
@@ -17,6 +17,7 @@ fetch("http://localhost:5000/api/services")
         </div>
       `;
     });
+
   })
   .catch(err => {
     console.error("Failed to load featured services", err);
