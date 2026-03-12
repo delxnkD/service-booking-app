@@ -3,7 +3,6 @@ const connectDB = require("./config/db");
 const cors = require("cors");
 const path = require("path");
 
-// Connect to MongoDB
 connectDB();
 
 const app = express();
@@ -16,16 +15,10 @@ app.use("/api/bookings", require("./routes/bookingRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
 
 // Serve frontend
-const frontendPath = path.join(__dirname, "../frontend");
-app.use(express.static(frontendPath));
+app.use(express.static(path.join(__dirname, "../frontend")));
 
-// SPA catch-all route using regex
-app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(frontendPath, "index.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/index.html"));
 });
 
-// Use Render's PORT environment variable, fallback to 5000
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, "0.0.0.0", () =>
-  console.log(`Server running on port ${PORT}`)
-);
+app.listen(5000, () => console.log("Server running on port 5000"));
