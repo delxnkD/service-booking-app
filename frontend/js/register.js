@@ -8,21 +8,25 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
   };
 
   try {
-    const res = await fetch("http://localhost:5000/api/users/register", {
+    const res = await fetch("/api/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(user)
     });
 
     const data = await res.json();
-    if(res.ok) {
-      document.getElementById("message").innerHTML = `<p style="color:green">${data.message}</p>`;
+
+    if (res.ok) {
+      document.getElementById("message").innerHTML =
+        `<p style="color:green">${data.message}</p>`;
       setTimeout(() => window.location.href = "login.html", 1500);
     } else {
-      document.getElementById("message").innerHTML = `<p style="color:red">${data.message}</p>`;
+      document.getElementById("message").innerHTML =
+        `<p style="color:red">${data.message}</p>`;
     }
   } catch (err) {
     console.error(err);
-    document.getElementById("message").innerHTML = `<p style="color:red">Registration failed</p>`;
+    document.getElementById("message").innerHTML =
+      `<p style="color:red">Registration failed</p>`;
   }
 });
