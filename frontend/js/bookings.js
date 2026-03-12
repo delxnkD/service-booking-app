@@ -1,16 +1,18 @@
 let allBookings = [];
 
-// Load bookings from API
 async function loadBookings() {
   try {
-    const res = await fetch("http://localhost:5000/api/bookings");
+
+    const res = await fetch("/api/bookings");
     allBookings = await res.json();
+
     renderBookings(allBookings);
 
-    // Populate service filter dynamically
     const services = [...new Set(allBookings.map(b => b.service.name))];
     const filterSelect = document.getElementById("filterService");
-    filterSelect.innerHTML = '<option value="">All</option>'; // reset
+
+    filterSelect.innerHTML = '<option value="">All</option>';
+
     services.forEach(s => {
       const option = document.createElement("option");
       option.value = s;
@@ -24,12 +26,13 @@ async function loadBookings() {
   }
 }
 
-// Render booking cards
 function renderBookings(bookings) {
+
   const container = document.getElementById("bookings");
   container.innerHTML = "";
 
   bookings.forEach(b => {
+
     const clientEmail = b.user?.email || "Not available";
 
     container.innerHTML += `
@@ -44,16 +47,18 @@ function renderBookings(bookings) {
     `;
   });
 
-  // Add event listeners for "Mark Complete" buttons
   container.querySelectorAll(".complete-btn").forEach(btn => {
+
     btn.addEventListener("click", async e => {
+
       const card = e.target.closest(".card");
       const bookingId = card.dataset.id;
 
       if (!confirm("Mark this booking as completed?")) return;
 
       try {
-        const res = await fetch(`http://localhost:5000/api/bookings/${bookingId}/complete`, {
+
+        const res = await fetch(`/api/bookings/${bookingId}/complete`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" }
         });
@@ -65,16 +70,20 @@ function renderBookings(bookings) {
           const errData = await res.json();
           alert("Error: " + (errData.message || "Unknown error"));
         }
+
       } catch (err) {
         console.error("Error completing booking:", err);
-        alert("Failed to complete booking. Check console.");
+        alert("Failed to complete booking.");
       }
+
     });
+
   });
+
 }
 
-// Filter bookings
 document.getElementById("filterBtn").addEventListener("click", () => {
+
   const serviceFilter = document.getElementById("filterService").value;
   const statusFilter = document.getElementById("filterStatus").value;
 
@@ -84,7 +93,7 @@ document.getElementById("filterBtn").addEventListener("click", () => {
   );
 
   renderBookings(filtered);
+
 });
 
-// Initialize
 loadBookings();
