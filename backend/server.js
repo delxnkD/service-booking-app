@@ -19,8 +19,8 @@ app.use("/api/users", require("./routes/userRoutes"));
 const frontendPath = path.join(__dirname, "../frontend");
 app.use(express.static(frontendPath));
 
-// Catch-all route for SPA
-app.get("/*", (req, res) => {
+// SPA catch-all route using regex
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
 
